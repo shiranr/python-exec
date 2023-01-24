@@ -12,12 +12,14 @@ def main():
 
     config_group = parser.add_mutually_exclusive_group()
     config_group.add_argument(
+        "--function",
         "-f",
         dest="file_path",
         action="store",
         help="python file path to run",
     )
     config_group.add_argument(
+        "--name",
         "-n",
         dest="function_name",
         action="store",
