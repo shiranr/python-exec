@@ -1,8 +1,8 @@
 import argparse
-
-from py._builtin import execfile
+from typing import List
 
 from linter import *
+from linter.application import Application
 
 
 def main():
@@ -10,27 +10,28 @@ def main():
 
     parser.add_argument("-v", "--version", action="version", version=APP_VERSION)
 
-    config_group = parser.add_mutually_exclusive_group()
-    config_group.add_argument(
-        "--function",
+    parser.add_argument(
         "-f",
+        "--file",
         dest="file_path",
         action="store",
         help="python file path to run",
     )
-    config_group.add_argument(
-        "--name",
-        "-n",
-        dest="function_name",
+    parser.add_argument(
+        "-i",
+        "--invoke",
+        dest="invoke_function",
         action="store",
         help="function name to invoke in file",
     )
+
+    parser.add_argument(
+        "linter_files",
+        help="files to check",
+        type=str,
+        nargs="+"
+    )
+
     args = parser.parse_args()
-    return run(args.file_path, args.function_name)
 
-
-def run(file_path: str, function_name: str):
-    loc = {}
-    config = dict()
-    execfile(file_path, config, loc)
-    return loc.get(function_name)()
+    return Application().run(args)
