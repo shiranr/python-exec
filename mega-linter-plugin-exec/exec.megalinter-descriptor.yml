@@ -1,0 +1,25 @@
+descriptor_id: PYTHON
+descriptor_type: other
+descriptor_flavors:
+  - all
+file_extensions:
+  - ".md"
+lint_all_other_linters_files: true
+linters:
+  # python-exec
+  - linter_name: exec
+    linter_url: https://github.com/shiranr/python-linter-exec
+    linter_repo: https://github.com/shiranr/python-linter-exec
+    config_file_name: exec.json
+    cli_config_arg_name: "-config"
+    cli_version_arg_name: "-version"
+    cli_lint_fix_arg_name: "--megalinter-fix-flag" # Workaround for MegaLinter
+    cli_lint_mode: list_of_files
+    lint_all_files: true
+    examples:
+      - "python-exec README.md"
+      - "python-exec --config exec.json README.md"
+      - "python-exec -f PATH/TO/SCRIPT.py -i METHOD_NAME_TO_INVOKE README.md"
+    install:
+      dockerfile:
+        - RUN python install github.com/shiranr/python-exec@latest && go clean --cache

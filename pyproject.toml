@@ -1,0 +1,22 @@
+[project]
+name = "python-exec"
+version = "0.0.1"
+description = "Megalinter script executor"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {file = "LICENSE"}
+classifiers = [
+  "Development Status :: 2 - Pre-Alpha",
+  "Programming Language :: Python"
+]
+
+dependencies = []
+
+[project.optional-dependencies]
+test = []
+
+[project.urls]
+repository = "https://github.com/shiranr/python-exec"
+
+[project.scripts]
+python-exec = "linter:main"
